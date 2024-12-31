@@ -1,0 +1,14 @@
+{
+  "server": {
+    "baseDir": "dist",
+    "routes": {
+      "/": "public"
+    }
+  },
+  "files": [
+    "dist/**/*.{html,htm,css,js}",
+    "public/**/*.{html,htm,css,js,jpg,png,svg,ico}"
+  ],
+  "open": false,
+  "port": 3000
+}
