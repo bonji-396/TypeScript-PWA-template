@@ -1,14 +1,18 @@
 {
+  "port": 3000,
+  "files": ["./dist/**/*"],
   "server": {
-    "baseDir": "dist",
+    "baseDir": "./dist",
     "routes": {
-      "/": "public"
+      "/node_modules": "node_modules"
     }
   },
-  "files": [
-    "dist/**/*.{html,htm,css,js}",
-    "public/**/*.{html,htm,css,js,jpg,png,svg,ico}"
-  ],
   "open": false,
-  "port": 3000
+  "notify": false,
+  "ui": false,
+  "watch": true,
+  "reloadDelay": 500,
+  "watchOptions": {
+    "ignored": ["node_modules", ".git"]
+  }
 }

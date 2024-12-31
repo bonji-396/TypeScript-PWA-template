@@ -1,16 +1,16 @@
-declare const self: ServiceWorkerGlobalScope;
+/// <reference lib="webworker" />
 
-self.addEventListener('install', (event) => {
+// install event
+addEventListener('install', (event: ExtendableEvent) => {
   console.log('Service Worker installed', event);
 });
 
-self.addEventListener('activate', (event) => {
+// activate event
+addEventListener('activate', (event: ExtendableEvent) => {
   console.log('Service Worker activated', event);
 });
 
-self.addEventListener('fetch', (event: FetchEvent) => {
+// fetch event
+addEventListener('fetch', (event: FetchEvent) => {
   console.log('Fetching:', event.request.url);
 });
-
-// Service Workerのスコープ外への変数の漏洩を防ぐ
-export {};

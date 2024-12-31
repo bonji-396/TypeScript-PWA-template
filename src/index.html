@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self' cdn.skypack.dev; script-src 'self' 'unsafe-inline' cdn.skypack.dev; style-src 'self' 'unsafe-inline'"
+    />
     <title>PWA App</title>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="manifest" href="manifest.json" />
@@ -15,22 +19,7 @@
   </head>
   <body>
     <p>hoge</p>
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function () {
-          navigator.serviceWorker
-            .register('/service-worker.js')
-            .then((registration) => {
-              console.log(
-                'Service Worker registered with scope:',
-                registration.scope
-              );
-            })
-            .catch((err) => {
-              console.log('Service Worker registration failed:', err);
-            });
-        });
-      }
-    </script>
+    <script type="module" src="main.js"></script>
+    <script type="module" src="register-sw.js"></script>
   </body>
 </html>

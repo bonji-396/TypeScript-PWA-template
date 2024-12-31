@@ -1,23 +1,23 @@
 {
   "scripts": {
-    "start": "concurrently \"npm run watch-ts\" \"npm run watch-sass\" \"npm run watch-static\" \"lite-server\"",
+    "clean": "rimraf dist",
+    "start": "npm run clean && concurrently \"npm run watch-ts\" \"npm run watch-sass\" \"npm run watch-static\" \"npm run serve\"",
     "watch-ts": "tsc -w",
     "watch-sass": "sass --watch src/styles/main.scss:dist/css/style.css",
-    "watch-static": "npm run copy-static && chokidar 'src/**/*.html' 'src/**/*.json' 'src/**/*.js' -c 'npm run copy-static'",
-    "build": "tsc && npm run sass && npm run copy-static",
+    "watch-static": "npm run copy-static && chokidar \"src/**/*.{html,json}\" \"public/**/*\" -c \"npm run copy-static\"",
+    "serve": "lite-server",
+    "build": "npm run clean && tsc && npm run sass && npm run copy-static",
     "sass": "sass src/styles/main.scss:dist/css/style.css",
-    "copy-static": "cp src/index.html dist/index.html && cp src/manifest.json dist/manifest.json && cp -r public/* dist",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "copy-static": "mkdir -p dist/css && cp -r src/index.html dist/ && cp -r src/manifest.json dist/ && cp -r public/* dist/"
   },
   "devDependencies": {
+    "@types/serviceworker": "^0.0.67",
     "chokidar-cli": "^3.0.0",
     "concurrently": "^9.1.2",
     "lite-server": "^2.6.1",
+    "rimraf": "^6.0.1",
     "sass": "^1.83.0",
-    "typescript": "^5.7.2"
-  },
-  "dependencies": {
+    "typescript": "^5.3.3",
     "rxjs": "^7.8.1"
-  },
-  "author": "Shuji Narumi"
+  }
 }
